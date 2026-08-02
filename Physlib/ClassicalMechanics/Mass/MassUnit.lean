@@ -8,20 +8,30 @@ module
 public import Mathlib.Analysis.RCLike.Basic
 /-!
 
-# Units on Mass
+# A. Units of mass
 
-A unit of mass corresponds to a choice of translationally-invariant
-metric on the mass manifold (to be defined diffeomorphic to `ℝ≥0`).
-Such a choice is (non-canonically) equivalent to a
-choice of positive real number. We define the type `MassUnit` to be equivalent to the
-positive reals.
+A unit of mass fixes the scale used to express masses numerically. This module models such a choice
+by a positive real scale factor, motivated by a translationally invariant metric on a future mass
+manifold that is expected to be diffeomorphic to `ℝ≥0`.
 
-On `MassUnit` there is an instance of division giving a real number, corresponding to the
-ratio of the two scales of mass unit.
+## A.1. Main definition
 
-To define specific mass units, we first state the existence of a
-a given mass unit, and then construct all other mass units from it. We choose to state the
-existence of the mass unit of kilograms, and construct all other mass units from that.
+`MassUnit` stores a positive real scale. The quotient `x / y` of two mass units is a nonnegative
+real number representing their conversion ratio. The function `scale` constructs a new unit by
+multiplying an existing scale by a positive real factor.
+
+## A.2. Named units and relations
+
+Kilograms provide the reference scale. Grams, milligrams, micrograms, imperial units, metric and
+imperial tons, and nominal solar masses are then constructed by scaling an existing unit. The
+module also proves selected conversion relations, including ounces to pounds and tons to
+kilograms.
+
+## A.3. Current scope
+
+This file formalizes choices of unit and conversion ratios, not dimensioned mass quantities. The
+latter belong in the general units API, where numerical values can be paired with physical
+dimensions and unit choices.
 
 -/
 
@@ -49,7 +59,7 @@ instance : Inhabited MassUnit where
 
 /-!
 
-## Division of MassUnit
+## B. Division of mass units
 
 -/
 
@@ -91,7 +101,7 @@ lemma div_mul_div_coe (x y z : MassUnit) :
 
 /-!
 
-## The scaling of a mass unit
+## C. Scaling a mass unit
 
 -/
 
@@ -130,13 +140,11 @@ lemma scale_scale (x : MassUnit) (r1 r2 : ℝ) (hr1 : 0 < r1) (hr2 : 0 < r2) :
 
 /-!
 
-## Specific choices of mass units
+## D. Specific choices of mass unit
 
-To define a specific mass units.
-We first define the notion of a kilogram to correspond to the mass unit with underlying value
-equal to `1`. This is really down to a choice in the isomorphism between the set of metrics
-on the mass manifold and the positive reals.
-From this choice of kilograms, we can define other length units by scaling kilograms.
+A kilogram is the mass unit with underlying value equal to `1`. This fixes a choice in the
+identification between metrics on the mass manifold and the positive reals. Other named mass units
+are defined by scaling kilograms or pounds.
 
 -/
 
@@ -182,7 +190,7 @@ noncomputable def nominalSolarMasses : MassUnit := scale (1.988416e30) kilograms
 
 /-!
 
-## Relations between mass units
+## E. Relations between mass units
 
 -/
 

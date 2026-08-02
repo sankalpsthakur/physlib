@@ -14,60 +14,29 @@ public import Physlib.Units.LTMCTDimensionBase
 public import Physlib.Meta.TODO.Basic
 public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
+# Physical units
 
-# Dimensions and unit
+## A. Scope
 
-A unit in physics arises from choice of something in physics which is non-canonical.
-An example is the choice of translationally-invariant metric on the time manifold `TimeMan`.
+This directory provides reusable infrastructure for physical units, unit systems, and conversions.
+Its purpose is to keep dimensional information explicit while allowing calculations to move between
+conventional unit choices without changing the underlying physical quantity.
 
-A dimension is a property of a quantity related to how it changes with respect to a
-change in the unit.
+## B. Organization
 
-The fundamental choices one has in physics are related to:
-- Time
-- Length
-- Mass
-- Charge
-- Temperature
+Concrete dimensions and named units live in focused submodules.  This overview module records the
+common role of scaling, conversion, and dimensioned quantities without duplicating their APIs.
 
-(In fact temperature is not really a fundamental choice, however we leave this as a `TODO`.)
+## C. Current status
 
-From these fundamental choices one can construct all other units and dimensions.
+The library covers the unit families needed by existing Physlib developments.  Numerical conversion
+factors and normalization conventions are stated in the modules that define them and should not be
+inferred from notation alone.
 
-## Implementation details
+## D. Future work
 
-Units within Physlib are implemented with the following convention:
-- The fundamental units, and the choices they correspond to, are defined within the
-  appropriate physics directory, in particular:
-  - `Physlib/SpaceAndTime/Time/TimeUnit.lean`
-  - `Physlib/SpaceAndTime/Space/LengthUnit.lean`
-  - `Physlib/ClassicalMechanics/Mass/MassUnit.lean`
-  - `Physlib/Electromagnetism/Charge/ChargeUnit.lean`
-  - `Physlib/Thermodynamics/Temperature/TemperatureUnit.lean`
-- In this `Units` directory, we define the necessary structures and properties
-  to work derived units and dimensions.
-
-## References
-
-Zulip chats discussing units:
-- https://leanprover.zulipchat.com/#narrow/channel/479953-Physlib/topic/physical.20units
-- https://leanprover.zulipchat.com/#narrow/channel/116395-maths/topic/Dimensional.20Analysis.20Revisited/with/530238303
-
-## Note
-
-A lot of the results around units is still experimental and should be adapted based on needs.
-
-## Other implementations of units
-
-There are other implementations of units in Lean, in particular:
-1. https://github.com/ATOMSLab/LeanDimensionalAnalysis/tree/main
-2. https://github.com/teorth/analysis/blob/main/analysis/Analysis/Misc/SI.lean
-3. https://github.com/ecyrbe/lean-units
-Each of these have their own advantages and specific use-cases.
-For example both (1) and (3) allow for or work in Floats, allowing computability and the use
-of `#eval`. This is currently not possible with the more theoretical implementation here
-in Physlib which is based exclusively on Reals.
-
+Useful extensions include broader dimensional-analysis automation, additional conventional unit
+systems, and stronger simplification support for mixed-unit calculations.
 -/
 
 @[expose] public section

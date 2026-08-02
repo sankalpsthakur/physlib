@@ -9,17 +9,37 @@ public import Physlib.Mathematics.VariationalCalculus.HasVarGradient
 public import Physlib.SpaceAndTime.Time.Derivatives
 /-!
 
-# Hamilton's equations
+# A. Hamilton's equations
 
-In this module, given a Hamiltonian function `H : Time → X → X → ℝ`,
-we define the operator `hamiltonEqOp`
-which when equals zero implies hamilton's equations.
+Hamilton's equations describe classical dynamics on phase space using a Hamiltonian and a pair of
+momentum and position trajectories. They express the time derivatives of these trajectories through
+gradients of the Hamiltonian.
 
-We show that the variational derivative of the action functional
-`∫ ⟪p, dq/dt⟫ - H(t, p, q) dt` is equal to the `hamiltonEqOp`
-applied to `(p, q)`.
+## A.1. Mathematical setting
 
-## References
+The phase-space coordinates take values in a complete real inner-product space `X`. A Hamiltonian
+has type `Time → X → X → ℝ`, with the second and third arguments representing momentum and
+position respectively.
+
+## A.2. Main definitions and results
+
+- `hamiltonEqOp` combines the two residuals of Hamilton's equations into an `X × X`-valued
+  function of time.
+- `hamiltonEqOp_eq` exposes the operator's pointwise formula.
+- `hamiltonEqOp_eq_zero_iff_hamiltons_equations` proves that vanishing of the operator is
+  equivalent to the usual pair of Hamilton equations.
+- `hamiltons_equations_varGradient` identifies the variational gradient of the phase-space action
+  with `hamiltonEqOp`.
+
+## A.3. Variational formulation
+
+The action used here is
+`∫ t, ⟪p(t), ∂ₜ q(t)⟫_ℝ - H(t, p(t), q(t))`.
+For smooth phase-space trajectories and Hamiltonians, its variational gradient is exactly the
+Hamilton-equation residual. System-specific modules use this result to connect Hamiltonian and
+Lagrangian descriptions.
+
+## A.4. References
 
 - G. J. Sussman and J. Wisdom, "Structure and Interpretation of Classical Mechanics", Section 3.1.2.
 <https://groups.csail.mit.edu/mac/users/gjs/6946/sicm-html/book-Z-H-36.html#%_sec_3.1.2>

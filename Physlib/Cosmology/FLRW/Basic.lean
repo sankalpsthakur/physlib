@@ -12,11 +12,30 @@ public import Physlib.Meta.TODO.Basic
 public import Physlib.SpaceAndTime.Time.Derivatives
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 /-!
+# Friedmann–Lemaître–Robertson–Walker cosmology
 
-# The Friedmann-Lemaître-Robertson-Walker metric
+## A. Physical setting
 
-Parts of this file is currently informal or semiformal.
+FLRW spacetimes model homogeneous and isotropic cosmologies through a time-dependent scale factor
+and a constant-curvature spatial geometry.  They provide the standard setting for the Friedmann
+equations and many baseline cosmological calculations.
 
+## B. Formal setting
+
+This module organizes the shared FLRW definitions and results used by the concrete cosmology
+submodules.  Individual declarations state the spacetime signature, matter model, differentiability,
+and parameter assumptions they require.
+
+## C. Current status
+
+Physlib formalizes selected FLRW structures and calculations rather than a complete cosmological
+model.  The overview distinguishes kernel-checked results from any semiformal or computational
+material contained in neighboring files.
+
+## D. Future work
+
+Natural extensions include additional matter components, curvature cases, observational distance
+relations, perturbations, and clearer links to the general relativity API.
 -/
 
 @[expose] public section

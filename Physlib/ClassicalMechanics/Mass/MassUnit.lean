@@ -59,7 +59,7 @@ instance : Inhabited MassUnit where
 
 /-!
 
-## B. Division of mass units
+# B. Division of mass units
 
 -/
 
@@ -101,7 +101,7 @@ lemma div_mul_div_coe (x y z : MassUnit) :
 
 /-!
 
-## C. Scaling a mass unit
+# C. Scaling a mass unit
 
 -/
 
@@ -140,7 +140,7 @@ lemma scale_scale (x : MassUnit) (r1 r2 : ℝ) (hr1 : 0 < r1) (hr2 : 0 < r2) :
 
 /-!
 
-## D. Specific choices of mass unit
+# D. Specific choices of mass unit
 
 A kilogram is the mass unit with underlying value equal to `1`. This fixes a choice in the
 identification between metrics on the mass manifold and the positive reals. Other named mass units
@@ -190,7 +190,7 @@ noncomputable def nominalSolarMasses : MassUnit := scale (1.988416e30) kilograms
 
 /-!
 
-## E. Relations between mass units
+# E. Relations between mass units
 
 -/
 
